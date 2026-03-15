@@ -1,4 +1,4 @@
-cat > README.md << 'EOF'
+
 # Kubernetes Cluster with CRI-O
 
 Развертывание Kubernetes кластера с использованием CRI-O в качестве container runtime на трех виртуальных машинах QEMU.
