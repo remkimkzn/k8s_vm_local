@@ -34,7 +34,6 @@ net.bridge.bridge-nf-call-iptables  = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
-sysctl --system
 
 https://github.com/cri-o/packaging/blob/main/README.md#usage
 
@@ -50,14 +49,14 @@ export CRIO_VERSION=v1.35
 # 6. Установка CRI-O (Все узлы)
 apt install gnupg
 curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
-    gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
+  sudo  gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
-    tee /etc/apt/sources.list.d/cri-o.list
+   sudo tee /etc/apt/sources.list.d/cri-o.list
 
 apt-get update
 apt-get install -y cri-o
-systemctl start crio status
+systemctl start crio 
 
 # 7. Установка kubeadm, kubelet, kubectl (Все узлы)
 cat <<EOF | tee /etc/yum.repos.d/kubernetes.repo
